@@ -9,12 +9,32 @@
 <script>
     function add()
     {
+        var li = document.createElement('li');
+        var text = document.createTextNode(document.getElementById('todo').value);
+        li.appendChild(text);
+        var button = document.createElement("button");
+        button.innerHTML = "Remove";
+        var done_button = document.createElement("button");
+        done_button.innerHTML = "Done";
+        var parent = document.getElementById('myTodo');
+        button.onclick = function(){
+            parent.removeChild(li);
+        }
+        done_button.onclick = function(){
+           li.style.textDecoration = "line-through";
+           li.removeChild(done_button);
+        }
+        li.appendChild(button);
+        li.appendChild(done_button);
+
+        parent.appendChild(li);
         
     }
 </script>
 <body>
     <h1>Todo App</h1>
     <input type="text" placeholder="Description" id = "todo"/>
-    <button onclick="add">Add</button>
+    <button onclick="add()">Add</button>
+    <ul id="myTodo"></ul>
 </body>
 </html>
